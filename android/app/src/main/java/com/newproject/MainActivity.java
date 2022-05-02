@@ -5,11 +5,6 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import android.os.Bundle;
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(null);
-}
-
 public class MainActivity extends ReactActivity {
 
   /**
@@ -19,6 +14,13 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "NewProject";
+  }
+
+  // Configuration for react-native-screens
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
   }
 
   /**
