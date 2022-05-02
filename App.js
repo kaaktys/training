@@ -15,7 +15,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Photos">
-        <Stack.Screen name="Home" component={Home}   options={{ title: 'Na4alo' }}/>
+        <Stack.Screen name="Home" component={Home}   />
         <Stack.Screen name="Photos" component={Photos} />
       </Stack.Navigator>
 

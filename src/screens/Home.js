@@ -9,7 +9,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-function Home() {
+function Home({ navigation }) {
 
     const [imageVisible, setImageVisible] = useState(false)
 
@@ -37,7 +37,21 @@ function Home() {
             </View>
 
             {imageVisible ?
-                <TouchableOpacity onPress={() => Alert.alert('hi')}>
+                <TouchableOpacity onPress={() => 
+                    {
+                        Alert.alert(
+                            "you want to see her more?",
+                            "gavari",
+                            [
+                                {
+                                    text: "Not",
+                                    onPress: () => navigation.navigate('Home'),
+                                },
+                                { text: "Kate", onPress: () => setImageVisible(true) },
+                            ]
+                        );
+                    }
+            } >
                     <Image
                         style={{
                             width: 200, height: 200, left: 100, bottom: 250,
