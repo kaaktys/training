@@ -12,6 +12,7 @@ import {
 function Home({ navigation }) {
 
     const [imageVisible, setImageVisible] = useState(false)
+    const [textVisible, setTextVisible] = useState(false)
 
     return (
         <View style={styles.wrapper}>
@@ -26,10 +27,18 @@ function Home({ navigation }) {
                             [
                                 {
                                     text: "Not kate",
-                                    onPress: () => setImageVisible(false),
+                                    onPress: () => {
+                                        setTextVisible(true)
+                                        setImageVisible(false)
+                                    },
                                     style: "cancel"
                                 },
-                                { text: "Kate", onPress: () => setImageVisible(true) },
+                                {
+                                    text: "Kate", onPress: () => {
+                                        setImageVisible(true)
+                                        setTextVisible(false)
+                                    }
+                                },
                             ]
                         );
                     }}
@@ -37,21 +46,30 @@ function Home({ navigation }) {
             </View>
 
             {imageVisible ?
-                <TouchableOpacity onPress={() => 
-                    {
-                        Alert.alert(
-                            "you want to see her more?",
-                            "gavari",
-                            [
-                                {
-                                    text: "Not",
-                                    onPress: () => navigation.navigate('Home'),
+                <TouchableOpacity onPress={() => {
+                    Alert.alert(
+                        "you want to see her more?",
+                        "gavari",
+                        [
+                            {
+                                text: "no",
+                                onPress: () => {
+                                    setTextVisible(true)
+                                    setImageVisible(false)
                                 },
-                                { text: "Kate", onPress: () => setImageVisible(true) },
-                            ]
-                        );
-                    }
-            } >
+                            },
+                            {
+                                text: "SURE!!", onPress: () => {
+                                    navigation.navigate('Photos', {
+                                        setImageVisible: setImageVisible,
+                                        setTextVisible: setTextVisible,
+                                    })
+                                }
+                            },
+                        ]
+                    );
+                }
+                } >
                     <Image
                         style={{
                             width: 200, height: 200, left: 100, bottom: 250,
@@ -64,21 +82,26 @@ function Home({ navigation }) {
                     />
                 </TouchableOpacity>
 
-                :
-                <View
-                    style={{
-                        bottom: 400,
-                        left: 120
-                    }}
-                >
-                    <Text style={{
-                        fontSize: 50,
-                        color: 'red'
-                    }}>Fuck off</Text>
-                </View>
+                : null
             }
 
-        </View>
+            {
+                textVisible ?
+                    <View
+                        style={{
+                            bottom: 400,
+                            left: 120
+                        }}
+                    >
+                        <Text style={{
+                            fontSize: 50,
+                            color: 'red'
+                        }}>Fuck off</Text>
+                    </View>
+
+                    : null
+            }
+        </View >
     );
 };
 
